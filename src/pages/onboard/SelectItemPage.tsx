@@ -1,6 +1,5 @@
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/virtual";
+
 import { useNavigate } from "react-router";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
