@@ -59,7 +59,7 @@ const DonationCompletePage = () => {
       <Footer>
         <Button
           onClick={() => {
-            Kakao.Share.sendDefault();
+            // Kakao.Share.sendDefault();
           }}
         >
           친구에게 공유하기
