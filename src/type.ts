@@ -11,4 +11,5 @@ export type Message = {
   content: string;
   nickname: string;
   itemType: number;
+  userId: number;
 };

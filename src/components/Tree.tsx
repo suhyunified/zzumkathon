@@ -2,8 +2,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { ImgStar } from "../assets";
 import ImgTree from "../assets/img_tree.svg?react";
 import { ITEMS } from "../constants";
-
-import { Message } from "../pages/CompletePage";
+import { Message } from "../type";
 
 const POSITION = [
   { x: 157, y: 70 },

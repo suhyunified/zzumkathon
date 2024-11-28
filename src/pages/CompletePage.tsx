@@ -9,14 +9,7 @@ import { api } from "../api/axios";
 import { UserContext } from "../context/user";
 import Body from "../components/Body";
 import TreeWithMessageList from "../components/TreeWithMessageList";
-
-export type Message = {
-  id: number;
-  content: string;
-  nickname: string;
-  itemType: number;
-  userId: number;
-};
+import { Message } from "../type";
 
 const CompletePage = () => {
   const navigate = useNavigate();

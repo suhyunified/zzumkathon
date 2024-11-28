@@ -1,7 +1,8 @@
 import { useContext } from "react";
-import { Message } from "../pages/CompletePage";
+
 import Text from "./Text";
 import { UserContext } from "../context/user";
+import { Message } from "../type";
 
 interface MessageListProps {
   messages: Message[];
