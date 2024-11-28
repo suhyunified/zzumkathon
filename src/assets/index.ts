@@ -7,6 +7,9 @@ export { default as ImgDecoSocksRed } from "./img_deco_socks_red.svg?react";
 export { default as ImgDecoStick } from "./img_deco_stick.svg?react";
 export { default as IconChevronLeft } from "./icon_chevron_left.svg?react";
 export { default as IconChevronRight } from "./icon_chevron_right.svg?react";
+export { default as IconItem1 } from "./icon_item1.svg?react";
+export { default as IconItem2 } from "./icon_item2.svg?react";
+export { default as IconItem3 } from "./icon_item3.svg?react";
 import ImgStar from "./img_star.png";
 import ImgStarGray from "./img_star_gray.png";
 

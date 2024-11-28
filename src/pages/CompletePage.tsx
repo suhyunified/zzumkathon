@@ -87,7 +87,9 @@ const CompletePage = () => {
 
       {step === 2 && (
         <Footer>
-          <Button onClick={() => navigate("/donation")}>별 도와주기</Button>
+          <Button onClick={() => navigate("/donation/onboard")}>
+            별 도와주기
+          </Button>
         </Footer>
       )}
     </React.Fragment>

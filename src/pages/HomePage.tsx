@@ -59,9 +59,15 @@ const HomePage = () => {
         <MessageList messages={messages} />
       </Body>
       <Footer>
-        <Button onClick={() => navigate("/onboard/item")}>
-          트리 꾸미러 가기
-        </Button>
+        {user?.freeTier ? (
+          <Button onClick={() => navigate("/onboard/item")}>
+            기부 내역 확인하기
+          </Button>
+        ) : (
+          <Button onClick={() => navigate("/onboard/item")}>
+            트리 꾸미러 가기
+          </Button>
+        )}
       </Footer>
     </React.Fragment>
   );

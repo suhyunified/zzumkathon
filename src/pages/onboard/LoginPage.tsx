@@ -12,7 +12,7 @@ const LoginPage = () => {
   const token = searchParams.get("code");
 
   const loginWithKakao = () => {
-    Kakao.Auth.authorize({
+    window.Kakao.Auth.authorize({
       redirectUri: "http://localhost:3000/login",
     });
   };

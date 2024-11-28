@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { ImgStar, ImgStarGray } from "../assets";
 import ImgTree from "../assets/img_tree.svg?react";
 import { ITEMS } from "../constants";
