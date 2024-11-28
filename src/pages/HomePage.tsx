@@ -3,6 +3,8 @@ import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Text from "../components/Text";
 import { useNavigate } from "react-router";
+import Tree from "../components/Tree";
+
 const HomePage = () => {
   const navigate = useNavigate();
   return (
@@ -10,12 +12,16 @@ const HomePage = () => {
       <NavBar />
       <div className="px-[24px] pb-[40px]">
         <Text px={26} weight={700} align="center">
-          함께 만드는
-          <br /> 크리스마스 트리
+          함께 트리 꾸미기
         </Text>
         <Text px={16} weight={500} align="center" color="#B9C0C6">
-          트리를 꾸미면 삼쩜삼이 OOO원 기부해요
+          귀여운 장식으로 트리를 꾸미고
+          <br />
+          기부로 따뜻한 마음을 나눠보세요
         </Text>
+      </div>
+      <div className="flex justify-center">
+        <Tree />
       </div>
       <Footer>
         <Button onClick={() => navigate("/onboard/item")}>

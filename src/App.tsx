@@ -1,11 +1,8 @@
 import { Route, Routes } from "react-router";
 import HomePage from "./pages/HomePage";
 
-import OnboardSelectItemPage from "./pages/onboard/SelectItemPage";
-import OnboardNicknamePage from "./pages/onboard/NicknamePage";
-import OnboardCommentPage from "./pages/onboard/CommentPage";
-import OnboardCompletePage from "./pages/onboard/CompletePage";
 import LoginPage from "./pages/onboard/LoginPage";
+import OnboardEntry from "./pages/onboard/OnboardEntry";
 
 function App() {
   return (
@@ -14,14 +11,8 @@ function App() {
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="login" element={<LoginPage />} />
-          <Route path="onboard">
-            <Route path="item" element={<OnboardSelectItemPage />} />
-            <Route path="contents" element={<OnboardSelectItemPage />} />
-            <Route path="nickname" element={<OnboardNicknamePage />} />
-            <Route path="comment" element={<OnboardCommentPage />} />
-            <Route path="complete" element={<OnboardCompletePage />} />
-          </Route>
         </Routes>
+        <OnboardEntry />
       </div>
     </div>
   );

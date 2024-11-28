@@ -4,28 +4,30 @@ import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import Title from "../../components/Title";
 import Input from "../../components/Input";
-import { useState } from "react";
+import { useContext } from "react";
 import Body from "../../components/Body";
+import { OnboardContext } from "../../context/onboard";
 
 const NicknamePage = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-
+  const { form, setForm } = useContext(OnboardContext);
   return (
     <>
       <NavBar />
       <Title title="닉네임을 알려주세요" subTitle="트리 장식에 표시될 거예요" />
       <Body>
         <Input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          maxLength={5}
-          subTitle="최대 5자 입력 가능"
+          value={form.name}
+          onChange={(e) =>
+            setForm?.((prev) => ({ ...prev, name: e.target.value }))
+          }
+          maxLength={3}
+          subTitle="최대 3자 입력 가능"
         />
       </Body>
       <Footer>
         <Button
-          disabled={name.trim().length === 0}
+          disabled={form.name.length === 0}
           onClick={() => navigate("/onboard/comment")}
         >
           다음
