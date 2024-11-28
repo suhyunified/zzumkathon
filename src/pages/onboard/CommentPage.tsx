@@ -49,6 +49,7 @@ const CommentPage = () => {
       />
       <Body>
         <Input
+          autoFocus
           value={form.message}
           onChange={(e) =>
             setForm?.((prev) => ({ ...prev, message: e.target.value }))

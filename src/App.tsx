@@ -8,11 +8,13 @@ import CompletePage from "./pages/CompletePage";
 import DonationFormPage from "./pages/donation/DonationFormPage";
 import DonationCompletePage from "./pages/donation/DonationCompletePage";
 import DonationOnboardPage from "./pages/donation/DonationOnboardPage";
+import DonationHistory from "./pages/donation/DonationHistory";
 
 function App() {
   return (
     <div className="overflow-hidden flex justify-center min-w-[300px] w-full">
       <div className="w-full max-w-[620px]">
+        <audio id="jingle-bell" src="/jingle-bells.mp3" loop autoPlay></audio>
         <UserContextProvider>
           <Routes>
             <Route path="login" element={<LoginPage />} />
@@ -24,6 +26,7 @@ function App() {
               path="donation/complete"
               element={<DonationCompletePage />}
             />
+            <Route path="donation/history" element={<DonationHistory />} />
           </Routes>
           <OnboardEntry />
         </UserContextProvider>

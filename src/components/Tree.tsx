@@ -1,4 +1,5 @@
-import { ImgStar, ImgStarGray } from "../assets";
+import { AnimatePresence, motion } from "motion/react";
+import { ImgStar } from "../assets";
 import ImgTree from "../assets/img_tree.svg?react";
 import { ITEMS } from "../constants";
 
@@ -32,11 +33,27 @@ const Tree = ({ step, messages }: TreeProps) => {
                 filter: drop-shadow(0 0 20px rgba(255, 255, 0, 0.9)) drop-shadow(0 0 30px rgba(255, 255, 0, 1));
             }
           }
+
+          @keyframes flick {
+            0%{
+              scale: 0.9;
+              filter: brightness(30%) grayScale(100%)
+            }
+            100%{
+              scale: 1;
+              filter: brightness(40%) grayScale(70%)
+            }
+          }
         `}
       </style>
       <div style={{ position: "absolute", left: "125px" }}>
         {step === "onboard" && <img src={ImgStar} />}
-        {step === "before" && <img src={ImgStarGray} />}
+        {step === "before" && (
+          <img
+            src={ImgStar}
+            style={{ animation: "flick 1s ease-out infinite alternate" }}
+          />
+        )}
         {step === "after" && (
           <img
             style={{
@@ -47,36 +64,42 @@ const Tree = ({ step, messages }: TreeProps) => {
           />
         )}
       </div>
-      {POSITION?.map((pos, index) => {
-        return (
-          <div
-            style={{
-              position: "absolute",
-              width: "46px",
-              height: "auto",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              top: pos.y + "px",
-              left: pos.x + "px",
-            }}
-          >
-            {ITEMS?.[messages[index]?.itemType]?.icon}
-            <p
+      <AnimatePresence>
+        {POSITION?.map((pos, index) => {
+          return (
+            <motion.div
+              key={`${index}-${messages[index]?.content}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               style={{
-                color: "white",
-                fontWeight: 700,
-                fontSize: "10px",
-                backgroundColor: "rgba(0, 0, 0, 0.5)",
-                padding: "4px 8px",
-                borderRadius: "8px",
+                position: "absolute",
+                width: "46px",
+                height: "auto",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                top: pos.y + "px",
+                left: pos.x + "px",
               }}
             >
-              {messages[index]?.nickname}
-            </p>
-          </div>
-        );
-      })}
+              {ITEMS?.[messages[index]?.itemType]?.icon}
+              <p
+                key={index}
+                style={{
+                  color: "white",
+                  fontWeight: 700,
+                  fontSize: "10px",
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  padding: "4px 8px",
+                  borderRadius: "8px",
+                }}
+              >
+                {messages[index]?.nickname}
+              </p>
+            </motion.div>
+          );
+        })}
+      </AnimatePresence>
       <ImgTree />
     </div>
   );

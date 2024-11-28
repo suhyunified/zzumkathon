@@ -24,7 +24,7 @@ const DonationOnboardPage = () => {
             </>
           }
         />
-        <div style={{ height: "100px" }} />
+        <div style={{ height: "40px" }} />
         <ContentBox
           icon={<IconItem3 />}
           message={

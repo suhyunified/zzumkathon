@@ -16,7 +16,7 @@ const DonationFormPage = () => {
     name: string;
     mobilNo: string;
   }>({ amount: 0, name: "", mobilNo: "" });
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const updatePhoneNumber = async () => {
     await api.put(`/user/${user?.id}`, {
       mobilNo: form.mobilNo,
@@ -31,9 +31,24 @@ const DonationFormPage = () => {
     });
   };
 
+  const updateUser = async () => {
+    setUser?.((prev) => {
+      const nextValue = {
+        ...prev,
+        mobileNo: form.mobilNo,
+        freeTier: true,
+      };
+      localStorage.setItem("user", JSON.stringify(nextValue));
+      localStorage.setItem("amount", form.amount.toString());
+      return nextValue;
+    });
+  };
+
   const handleSubmit = async () => {
     await updatePhoneNumber();
     await postDonation();
+    await updateUser();
+    (document.getElementById("jingle-bell") as HTMLAudioElement).play();
     navigate("/donation/complete");
   };
 
@@ -63,13 +78,6 @@ const DonationFormPage = () => {
               ...prev,
               amount: Number(e.target.value.replace(/[^0-9]/g, "")),
             }));
-          }}
-          onFocus={(e) => {
-            e.target.value = e.target.value.replace(/,/g, "");
-          }}
-          onBlur={(e) => {
-            if (e.target.value)
-              e.target.value = Number(e.target.value).toLocaleString();
           }}
         />
         <div style={{ height: "40px" }} />

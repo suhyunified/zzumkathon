@@ -1,11 +1,17 @@
 import { useNavigate } from "react-router";
 import IconLeftArrow from "../assets/icon_left_arrow.svg?react";
 
-const NavBar = () => {
+const NavBar = ({ title }: { title?: string }) => {
   return (
     <div className="fixed top-0 left-0 h-[56px] w-full flex items-center px-[12px] py-[4px] bg-[#2b2f34] z-10">
-      <div className="w-full max-w-[620px]">
-        <BackButton />
+      <div className="flex w-full max-w-[620px]">
+        <div className="flex-1">
+          <BackButton />
+        </div>
+        <div className="flex-1 flex items-center justify-center text-white font-bold text-[16px]">
+          {title}
+        </div>
+        <div className="flex-1"></div>
       </div>
     </div>
   );
@@ -18,7 +24,7 @@ const BackButton = () => {
   return (
     <button
       onClick={() => navigate(-1)}
-      className="p-[24px] flex items-center justify-center"
+      className="p-[12px] flex items-center justify-center"
     >
       <IconLeftArrow />
     </button>

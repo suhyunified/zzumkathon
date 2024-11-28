@@ -22,13 +22,16 @@ const NicknamePage = () => {
             setForm?.((prev) => ({ ...prev, name: e.target.value }))
           }
           maxLength={3}
+          autoFocus
           subTitle="최대 3자 입력 가능"
         />
       </Body>
       <Footer>
         <Button
           disabled={form.name.length === 0}
-          onClick={() => navigate("/onboard/comment")}
+          onClick={() => {
+            navigate("/onboard/comment");
+          }}
         >
           다음
         </Button>

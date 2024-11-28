@@ -1,10 +1,13 @@
+import { useContext } from "react";
 import { Message } from "../pages/CompletePage";
 import Text from "./Text";
+import { UserContext } from "../context/user";
 
 interface MessageListProps {
   messages: Message[];
 }
 const MessageList = ({ messages }: MessageListProps) => {
+  const { user } = useContext(UserContext);
   return (
     <div
       style={{
@@ -14,13 +17,24 @@ const MessageList = ({ messages }: MessageListProps) => {
         display: "flex",
         gap: "8px",
         flexDirection: "column",
-        marginBottom: "80px",
+        marginBottom: "120px",
       }}
     >
       {messages.map((message) => (
         <div style={{ display: "flex" }}>
-          <div style={{ marginRight: "16px", width: "60px", color: "white" }}>
-            <Text px={14} weight={700}>
+          <div
+            style={{
+              marginRight: "16px",
+              width: "60px",
+              flexShrink: 0,
+              color: "white",
+            }}
+          >
+            <Text
+              px={14}
+              weight={700}
+              color={user?.id === message.userId ? "#96C1FF" : "white"}
+            >
               {message.nickname}
             </Text>
           </div>

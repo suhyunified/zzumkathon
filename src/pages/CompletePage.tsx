@@ -4,17 +4,18 @@ import Footer from "../components/Footer";
 import Button from "../components/Button";
 import Title from "../components/Title";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import Tree from "../components/Tree";
 import Text from "../components/Text";
 import { api } from "../api/axios";
-import MessageList from "../components/MessageList";
 import { UserContext } from "../context/user";
+import Body from "../components/Body";
+import TreeWithMessageList from "../components/TreeWithMessageList";
 
 export type Message = {
   id: number;
   content: string;
   nickname: string;
   itemType: number;
+  userId: number;
 };
 
 const CompletePage = () => {
@@ -42,6 +43,12 @@ const CompletePage = () => {
     if (messages.length === 0) return;
     const timer = setTimeout(() => {
       setStep(1);
+      window.scrollTo(0, 0);
+      const audioTag = document.getElementById(
+        "jingle-bell"
+      ) as HTMLAudioElement;
+      audioTag.pause();
+      audioTag.currentTime = 0;
       audioRef.current?.play();
     }, 4000);
 
@@ -60,31 +67,29 @@ const CompletePage = () => {
   return (
     <React.Fragment>
       <audio ref={audioRef} src="/effect.mp3" preload="auto" />
+
       <Blur visible={step === 1} />
       <NavBar />
-      <Title
-        title={
-          step === 2 ? (
-            <>
-              별이 빛날 수 있도록
-              <br />
-              도와주세요!
-            </>
-          ) : (
-            <>
-              짠! {user?.username}님 덕분에
-              <br />
-              트리가 더 풍성해졌어요
-            </>
-          )
-        }
-      />
-      <div className="flex justify-center">
-        <Tree step={step === 0 ? "onboard" : "before"} messages={messages} />
-      </div>
-
-      <MessageList messages={messages} />
-
+      <Body>
+        <Title
+          title={
+            step === 2 ? (
+              <>
+                별이 빛날 수 있도록
+                <br />
+                도와주세요!
+              </>
+            ) : (
+              <>
+                짠! {user?.username}님 덕분에
+                <br />
+                트리가 더 풍성해졌어요
+              </>
+            )
+          }
+        />
+        <TreeWithMessageList step={step === 0 ? "onboard" : "before"} />
+      </Body>
       {step === 2 && (
         <Footer>
           <Button onClick={() => navigate("/donation/onboard")}>
