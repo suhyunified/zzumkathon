@@ -27,18 +27,11 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    if (messages.length !== 0 || !user?.id) return;
-    getMessages(user.id);
-  }, [messages.length, user?.id]);
+    if (messages.length !== 0) return;
 
-  // const animationRef = useRef<HTMLParagraphElement | null>(null); // Ref for animation
-  // // Track the sequence of keys pressed
-  // const sequenceToMatch = [
-  //   "ArrowDown",
-  //   "ArrowRight",
-  //   "ArrowDown",
-  //   "ArrowRight",
-  // ];
+    if (!user?.id) return navigate("/login");
+    getMessages(user.id);
+  }, [messages.length, navigate, user.id]);
 
   if (messages.length === 0) return <div />;
 
