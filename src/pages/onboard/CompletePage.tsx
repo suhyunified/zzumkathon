@@ -4,7 +4,7 @@ import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import Title from "../../components/Title";
 
-const SelectItemPage = () => {
+const CompletePage = () => {
   const navigate = useNavigate();
   return (
     <>
@@ -12,16 +12,17 @@ const SelectItemPage = () => {
       <Title
         title={
           <>
-            트리 장식을
-            <br /> 골라보세요
+            짠! 도로로님 덕분에
+            <br />
+            트리가 더 풍성해졌어요
           </>
         }
       />
       <Footer>
-        <Button onClick={() => navigate("/onboard/nickname")}>골랐어요</Button>
+        <Button onClick={() => navigate("/onboard/complete")}>완료</Button>
       </Footer>
     </>
   );
 };
 
-export default SelectItemPage;
+export default CompletePage;

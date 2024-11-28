@@ -4,24 +4,17 @@ import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import Title from "../../components/Title";
 
-const SelectItemPage = () => {
+const NicknamePage = () => {
   const navigate = useNavigate();
   return (
     <>
       <NavBar />
-      <Title
-        title={
-          <>
-            트리 장식을
-            <br /> 골라보세요
-          </>
-        }
-      />
+      <Title title="닉네임을 알려주세요" subTitle="트리 장식에 표시될 거예요" />
       <Footer>
-        <Button onClick={() => navigate("/onboard/nickname")}>골랐어요</Button>
+        <Button onClick={() => navigate("/onboard/comment")}>다음</Button>
       </Footer>
     </>
   );
 };
 
-export default SelectItemPage;
+export default NicknamePage;

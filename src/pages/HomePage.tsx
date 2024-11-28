@@ -18,7 +18,9 @@ const HomePage = () => {
         </Text>
       </div>
       <Footer>
-        <Button onClick={() => navigate("/onboard")}>트리 꾸미러 가기</Button>
+        <Button onClick={() => navigate("/onboard/item")}>
+          트리 꾸미러 가기
+        </Button>
       </Footer>
     </>
   );
