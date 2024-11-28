@@ -34,7 +34,7 @@ const MessageList = ({ messages }: MessageListProps) => {
             <Text
               px={14}
               weight={700}
-              color={user?.id === message.userId ? "#96C1FF" : "white"}
+              color={user?.id === message?.userId ? "#96C1FF" : "white"}
             >
               {message.nickname}
             </Text>

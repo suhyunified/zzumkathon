@@ -1,14 +1,16 @@
+import { useContext, useEffect, useState } from "react";
 import Button from "../components/Button";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Text from "../components/Text";
 import { useNavigate } from "react-router";
-import React, { useContext, useEffect, useState } from "react";
+
 import { UserContext } from "../context/user";
 import { Message } from "../type";
 import { api } from "../api/axios";
 import Body from "../components/Body";
 import TreeWithMessageList from "../components/TreeWithMessageList";
+import React from "react";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -28,6 +30,15 @@ const HomePage = () => {
     if (messages.length !== 0 || !user?.id) return;
     getMessages(user.id);
   }, [messages.length, user?.id]);
+
+  // const animationRef = useRef<HTMLParagraphElement | null>(null); // Ref for animation
+  // // Track the sequence of keys pressed
+  // const sequenceToMatch = [
+  //   "ArrowDown",
+  //   "ArrowRight",
+  //   "ArrowDown",
+  //   "ArrowRight",
+  // ];
 
   if (messages.length === 0) return <div />;
 
@@ -52,6 +63,7 @@ const HomePage = () => {
             </Text>
           )}
         </div>
+
         <TreeWithMessageList step={user?.freeTier ? "after" : "onboard"} />
       </Body>
       <Footer>

@@ -1,0 +1,59 @@
+/* Slide-in animation for text */
+@keyframes slideIn {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Animation class */
+.animate {
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Fade-in animation for GIF */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Fade-out animation for GIF */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+/* GIF container styling */
+.gif-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+/* GIF animation */
+.gif {
+    max-width: 300px;
+    max-height: 300px;
+    animation: fadeIn 0.5s ease-in-out, fadeOut 0.5s ease-in-out 2.5s; /* 2.5s delay for fadeOut */
+}
