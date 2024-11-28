@@ -3,14 +3,15 @@ import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import Title from "../../components/Title";
 import Input from "../../components/Input";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import Body from "../../components/Body";
 import { OnboardContext } from "../../context/onboard";
 import { api } from "../../api/axios";
+import { useNavigate } from "react-router";
 
 const CommentPage = () => {
   const { form, setForm } = useContext(OnboardContext);
-
+  const navigate = useNavigate();
   const saveNickName = async () => {
     await api.put("/user/2", {
       username: form.name,
@@ -35,16 +36,17 @@ const CommentPage = () => {
 
   const handleSubmit = async () => {
     try {
-      await saveNickName();
-      const response = await makeTree();
-      await saveMessage(response.data.id);
+      navigate("/complete");
+      // await saveNickName();
+      // const response = await makeTree();
+      // await saveMessage(response.data.id);
     } catch (e) {
       console.log(e);
     }
   };
 
   return (
-    <>
+    <React.Fragment>
       <NavBar />
       <Title
         title={
@@ -71,7 +73,7 @@ const CommentPage = () => {
           완료
         </Button>
       </Footer>
-    </>
+    </React.Fragment>
   );
 };
 

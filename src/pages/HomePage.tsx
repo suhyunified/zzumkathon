@@ -4,11 +4,18 @@ import NavBar from "../components/NavBar";
 import Text from "../components/Text";
 import { useNavigate } from "react-router";
 import Tree from "../components/Tree";
+import React, { useContext } from "react";
+import { UserContext } from "../context/user";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const { user } = useContext(UserContext);
+
+  console.log(user);
+  if (!user) navigate("/login", { replace: true });
+
   return (
-    <>
+    <React.Fragment>
       <NavBar />
       <div className="px-[24px] pb-[40px]">
         <Text px={26} weight={700} align="center">
@@ -28,7 +35,7 @@ const HomePage = () => {
           트리 꾸미러 가기
         </Button>
       </Footer>
-    </>
+    </React.Fragment>
   );
 };
 

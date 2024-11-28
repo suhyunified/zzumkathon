@@ -19,7 +19,7 @@ import {
 } from "../../assets";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { PropsWithChildren, useContext } from "react";
+import React, { PropsWithChildren, useContext } from "react";
 import { OnboardContext } from "../../context/onboard";
 
 const SelectItemPage = () => {
@@ -37,7 +37,7 @@ const SelectItemPage = () => {
   ];
 
   return (
-    <>
+    <React.Fragment>
       <NavBar />
       <Title
         title={
@@ -80,7 +80,7 @@ const SelectItemPage = () => {
       <Footer>
         <Button onClick={() => navigate("/onboard/nickname")}>골랐어요</Button>
       </Footer>
-    </>
+    </React.Fragment>
   );
 };
 

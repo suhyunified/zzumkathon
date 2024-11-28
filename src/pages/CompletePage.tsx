@@ -1,13 +1,15 @@
 import { useNavigate } from "react-router";
-import NavBar from "../../components/NavBar";
-import Footer from "../../components/Footer";
-import Button from "../../components/Button";
-import Title from "../../components/Title";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
+import Button from "../components/Button";
+import Title from "../components/Title";
+import React from "react";
+import Tree from "../components/Tree";
 
 const CompletePage = () => {
   const navigate = useNavigate();
   return (
-    <>
+    <React.Fragment>
       <NavBar />
       <Title
         title={
@@ -18,11 +20,14 @@ const CompletePage = () => {
           </>
         }
       />
+      <div className="flex justify-center">
+        <Tree />
+      </div>
 
       <Footer>
         <Button onClick={() => navigate("/onboard/complete")}>완료</Button>
       </Footer>
-    </>
+    </React.Fragment>
   );
 };
 

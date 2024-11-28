@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router";
 import OnboardSelectItemPage from "./SelectItemPage";
 import OnboardNicknamePage from "./NicknamePage";
 import OnboardCommentPage from "./CommentPage";
-import OnboardCompletePage from "./CompletePage";
+import OnboardCompletePage from "../CompletePage";
 import { OnboardContextProvider } from "../../context/onboard";
 
 const OnboardEntry = () => {

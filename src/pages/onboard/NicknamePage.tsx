@@ -4,7 +4,7 @@ import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import Title from "../../components/Title";
 import Input from "../../components/Input";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import Body from "../../components/Body";
 import { OnboardContext } from "../../context/onboard";
 
@@ -12,7 +12,7 @@ const NicknamePage = () => {
   const navigate = useNavigate();
   const { form, setForm } = useContext(OnboardContext);
   return (
-    <>
+    <React.Fragment>
       <NavBar />
       <Title title="닉네임을 알려주세요" subTitle="트리 장식에 표시될 거예요" />
       <Body>
@@ -33,7 +33,7 @@ const NicknamePage = () => {
           다음
         </Button>
       </Footer>
-    </>
+    </React.Fragment>
   );
 };
 
