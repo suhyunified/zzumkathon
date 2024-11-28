@@ -53,12 +53,26 @@ const Tree = ({ step, messages }: TreeProps) => {
               position: "absolute",
               width: "46px",
               height: "auto",
-
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
               top: pos.y + "px",
               left: pos.x + "px",
             }}
           >
             {ITEMS?.[messages[index]?.itemType]?.icon}
+            <p
+              style={{
+                color: "white",
+                fontWeight: 700,
+                fontSize: "10px",
+                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                padding: "4px 8px",
+                borderRadius: "16px",
+              }}
+            >
+              {messages[index]?.nickname}
+            </p>
           </div>
         );
       })}

@@ -14,6 +14,7 @@ const MessageList = ({ messages }: MessageListProps) => {
         display: "flex",
         gap: "8px",
         flexDirection: "column",
+        marginBottom: "80px",
       }}
     >
       {messages.map((message) => (
