@@ -3,9 +3,14 @@ import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import Title from "../../components/Title";
+import Input from "../../components/Input";
+import { useState } from "react";
+import Body from "../../components/Body";
 
 const CommentPage = () => {
   const navigate = useNavigate();
+  const [message, setMessage] = useState("");
+
   return (
     <>
       <NavBar />
@@ -18,8 +23,22 @@ const CommentPage = () => {
           </>
         }
       />
+      <Body>
+        <Input
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          maxLength={20}
+          subTitle="최대 20자 입력 가능"
+        />
+      </Body>
+
       <Footer>
-        <Button onClick={() => navigate("/onboard/complete")}>완료</Button>
+        <Button
+          disabled={message.trim().length === 0}
+          onClick={() => navigate("/onboard/complete")}
+        >
+          완료
+        </Button>
       </Footer>
     </>
   );

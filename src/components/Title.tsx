@@ -8,7 +8,7 @@ const Title = ({
   subTitle?: React.ReactNode;
 }) => {
   return (
-    <div className="px-[24px] pb-[40px]">
+    <div className="px-[24px] py-[16px] pb-[40px]">
       <Text px={26} weight={700} align="center" className="mb-[12px]">
         {title}
       </Text>

@@ -18,6 +18,7 @@ const CompletePage = () => {
           </>
         }
       />
+
       <Footer>
         <Button onClick={() => navigate("/onboard/complete")}>완료</Button>
       </Footer>
