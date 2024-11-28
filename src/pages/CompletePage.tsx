@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Button from "../components/Button";
 import Title from "../components/Title";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Tree from "../components/Tree";
 import Text from "../components/Text";
 import { api } from "../api/axios";
@@ -22,39 +22,45 @@ const CompletePage = () => {
   const { user } = useContext(UserContext);
   const [step, setStep] = useState(0);
   const [messages, setMessages] = useState<Message[]>([]);
-
-  const getMessages = async () => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const getMessages = async (userId: number) => {
     const response = await api.post("/message/trees", {
-      userId: user?.id,
+      userId: userId,
       treeId: 2,
     });
+
     setMessages(response.data.data);
   };
 
   useEffect(() => {
-    if (messages.length !== 0) return;
-    getMessages();
-  }, []);
+    if (messages.length !== 0 || !user?.id) return;
 
-  console.log(messages);
+    getMessages(user.id);
+  }, [messages.length, user?.id]);
 
   useEffect(() => {
+    if (messages.length === 0) return;
     const timer = setTimeout(() => {
       setStep(1);
-    }, 2000);
+      audioRef.current?.play();
+    }, 4000);
 
     const timer2 = setTimeout(() => {
       setStep(2);
-    }, 4000);
+    }, 7000);
 
     return () => {
       if (timer) clearTimeout(timer);
       if (timer2) clearTimeout(timer2);
     };
-  }, []);
+  }, [messages.length]);
+
+  if (messages.length === 0) return <div />;
+
   return (
     <React.Fragment>
-      {step === 1 && <Blur />}
+      <audio ref={audioRef} src="/effect.mp3" preload="auto" />
+      <Blur visible={step === 1} />
       <NavBar />
       <Title
         title={
@@ -90,10 +96,13 @@ const CompletePage = () => {
 
 export default CompletePage;
 
-const Blur = () => {
+const Blur = ({ visible }: { visible: boolean }) => {
   return (
     <div
       style={{
+        transitionDuration: "0.5s",
+        opacity: visible ? 1 : 0,
+        visibility: visible ? "visible" : "hidden",
         position: "fixed",
         display: "flex",
         alignItems: "center",

@@ -14,8 +14,8 @@ function App() {
       <div className="w-full max-w-[620px]">
         <UserContextProvider>
           <Routes>
-            <Route index element={<HomePage />} />
             <Route path="login" element={<LoginPage />} />
+            <Route index element={<HomePage />} />
             <Route path="complete" element={<CompletePage />} />
             <Route path="donation" element={<DonationFormPage />} />
             <Route

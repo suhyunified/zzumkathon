@@ -6,35 +6,18 @@ import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import Title from "../../components/Title";
-import {
-  IconChevronLeft,
-  IconChevronRight,
-  ImgDecoBallGreen,
-  ImgDecoBallRed,
-  ImgDecoBallYellow,
-  ImgDecoBell,
-  ImgDecoSocksGreen,
-  ImgDecoSocksRed,
-  ImgDecoStick,
-} from "../../assets";
+import { IconChevronLeft, IconChevronRight } from "../../assets";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import React, { PropsWithChildren, useContext } from "react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
+import React, { PropsWithChildren, useContext, useRef } from "react";
 import { OnboardContext } from "../../context/onboard";
+import { ITEMS } from "../../constants";
 
 const SelectItemPage = () => {
-  const { setForm } = useContext(OnboardContext);
+  const { form, setForm } = useContext(OnboardContext);
+  const swiperRef = useRef<SwiperClass | null>(null);
 
   const navigate = useNavigate();
-  const items = [
-    { id: 1, icon: <ImgDecoBallGreen width={200} /> },
-    { id: 2, icon: <ImgDecoBallRed width={200} /> },
-    { id: 3, icon: <ImgDecoBallYellow width={200} /> },
-    { id: 4, icon: <ImgDecoBell width={200} /> },
-    { id: 5, icon: <ImgDecoSocksGreen width={200} /> },
-    { id: 6, icon: <ImgDecoSocksRed width={200} /> },
-    { id: 7, icon: <ImgDecoStick width={200} /> },
-  ];
 
   return (
     <React.Fragment>
@@ -53,10 +36,13 @@ const SelectItemPage = () => {
             spaceBetween={16}
             slidesPerView={1}
             onSlideChange={({ activeIndex }) =>
-              setForm?.((prev) => ({ ...prev, itemType: activeIndex + 1 }))
+              setForm?.((prev) => ({ ...prev, itemType: activeIndex }))
             }
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+            }}
           >
-            {items.map((item, index) => (
+            {ITEMS.map((item, index) => (
               <SwiperSlide
                 style={{
                   display: "flex",
@@ -64,17 +50,33 @@ const SelectItemPage = () => {
                 }}
                 key={`deco-item${index}`}
               >
-                {item.icon}
+                <div
+                  style={{
+                    width: "204px",
+                  }}
+                >
+                  {item.icon}
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
-        <ChevronButton position="left">
-          <IconChevronLeft />
-        </ChevronButton>
-        <ChevronButton position="right">
-          <IconChevronRight />
-        </ChevronButton>
+        {form.itemType !== 0 && (
+          <ChevronButton
+            position="left"
+            onClick={() => swiperRef.current?.slidePrev()}
+          >
+            <IconChevronLeft />
+          </ChevronButton>
+        )}
+        {form.itemType !== ITEMS.length - 1 && (
+          <ChevronButton
+            position="right"
+            onClick={() => swiperRef.current?.slideNext()}
+          >
+            <IconChevronRight />
+          </ChevronButton>
+        )}
       </div>
 
       <Footer>
@@ -89,18 +91,22 @@ export default SelectItemPage;
 const ChevronButton = ({
   position,
   children,
-}: PropsWithChildren & { position: "left" | "right" }) => {
+  onClick,
+}: PropsWithChildren & { position: "left" | "right"; onClick: () => void }) => {
   return (
-    <div
+    <button
+      onClick={onClick}
       style={{
         position: "absolute",
+        cursor: "pointer",
         top: "50%",
         transform: "translateY(-50%)",
         left: position === "left" ? 0 : "auto",
         right: position === "right" ? 0 : "auto",
+        zIndex: 10,
       }}
     >
       {children}
-    </div>
+    </button>
   );
 };

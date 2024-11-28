@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import NavBar from "../../components/NavBar";
 import Title from "../../components/Title";
 import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import { useNavigate } from "react-router";
 import Tree from "../../components/Tree";
+import { UserContext } from "../../context/user";
 
 const DonationCompletePage = () => {
   const navigate = useNavigate();
+  const { user } = useContext(UserContext);
+
   return (
     <React.Fragment>
       <NavBar />
       <Title
         title={
           <>
-            김점삼님 덕분에
+            {user?.username}님 덕분에
             <br />
             별이 더욱 빛나게 되었어요!
           </>

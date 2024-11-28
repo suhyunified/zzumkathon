@@ -15,16 +15,12 @@ const CommentPage = () => {
   const { user } = useContext(UserContext);
   console.log(user);
   const navigate = useNavigate();
-  const saveNickName = async () => {
-    await api.put(`/user/${user?.id}`, {
-      username: form.name,
-    });
-  };
 
   const saveMessage = async () => {
     await api.post(`/message/tree/messages`, {
       content: form.message,
       userId: user?.id,
+      nickname: form.name,
       itemType: form.itemType,
       treeId: 2,
     });
@@ -32,7 +28,6 @@ const CommentPage = () => {
 
   const handleSubmit = async () => {
     try {
-      await saveNickName();
       await saveMessage();
       navigate("/complete");
     } catch (e) {

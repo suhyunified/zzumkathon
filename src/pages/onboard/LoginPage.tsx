@@ -1,35 +1,36 @@
 import { useNavigate, useSearchParams } from "react-router";
 import Button from "../../components/Button";
 import { api } from "../../api/axios";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
+import { UserContext } from "../../context/user";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
+  const { setUser } = useContext(UserContext);
+  const token = searchParams.get("code");
+
   const loginWithKakao = () => {
     Kakao.Auth.authorize({
       redirectUri: "http://localhost:3000/login",
     });
   };
 
-  const token = searchParams.get("code");
-
   const login = useCallback(
     async (authorizeCode: string) => {
-      if (isLoading) return;
       try {
         const response = await api.post("/user/kakao/login", {
           authorizeCode,
         });
-        console.log(response.data.data);
+
+        setUser?.(response.data.data);
         localStorage.setItem("user", JSON.stringify(response.data.data));
       } finally {
         navigate("/");
-        //   setIsLoading(false);
       }
     },
-    [isLoading, navigate]
+    [navigate, setUser]
   );
 
   useEffect(() => {
@@ -37,6 +38,8 @@ const LoginPage = () => {
     setIsLoading(true);
     login(token);
   }, [isLoading, login, token]);
+
+  if (token || isLoading) return <React.Fragment />;
 
   return (
     <div
