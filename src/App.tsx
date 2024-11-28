@@ -5,6 +5,8 @@ import LoginPage from "./pages/onboard/LoginPage";
 import OnboardEntry from "./pages/onboard/OnboardEntry";
 import { UserContextProvider } from "./context/user";
 import CompletePage from "./pages/CompletePage";
+import DonationFormPage from "./pages/donation/DonationFormPage";
+import DonationCompletePage from "./pages/donation/DonationCompletePage";
 
 function App() {
   return (
@@ -15,6 +17,11 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="complete" element={<CompletePage />} />
+            <Route path="donation" element={<DonationFormPage />} />
+            <Route
+              path="donation/complete"
+              element={<DonationCompletePage />}
+            />
           </Routes>
           <OnboardEntry />
         </UserContextProvider>

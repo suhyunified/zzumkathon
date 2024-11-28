@@ -8,38 +8,33 @@ import Body from "../../components/Body";
 import { OnboardContext } from "../../context/onboard";
 import { api } from "../../api/axios";
 import { useNavigate } from "react-router";
+import { UserContext } from "../../context/user";
 
 const CommentPage = () => {
   const { form, setForm } = useContext(OnboardContext);
+  const { user } = useContext(UserContext);
+  console.log(user);
   const navigate = useNavigate();
   const saveNickName = async () => {
-    await api.put("/user/2", {
+    await api.put(`/user/${user?.id}`, {
       username: form.name,
     });
   };
 
-  const makeTree = async () => {
-    const response = await api.post("/tree", {
-      userId: 2,
-      treeName: form.name,
-      treeDescription: form.message,
-    });
-    return response;
-  };
-
-  const saveMessage = async (id: string) => {
-    await api.post(`/message/${id}/messages`, {
+  const saveMessage = async () => {
+    await api.post(`/message/tree/messages`, {
       content: form.message,
-      userId: 2,
+      userId: user?.id,
+      itemType: form.itemType,
+      treeId: 2,
     });
   };
 
   const handleSubmit = async () => {
     try {
+      await saveNickName();
+      await saveMessage();
       navigate("/complete");
-      // await saveNickName();
-      // const response = await makeTree();
-      // await saveMessage(response.data.id);
     } catch (e) {
       console.log(e);
     }

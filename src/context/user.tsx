@@ -13,8 +13,10 @@ export const UserContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  console.log(localStorage.getItem("user"));
-  const [user] = useState<User | undefined>(undefined);
+  console.log();
+  const [user] = useState<User>(
+    JSON.parse(localStorage.getItem("user") || "{}")
+  );
 
   return (
     <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>

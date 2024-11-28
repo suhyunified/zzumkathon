@@ -14,8 +14,8 @@ const Input = ({ subTitle, ...props }: InputProps) => {
     <>
       <div className="rounded-[16px] bg-[#33383E] p-[16px]">
         <input
-          {...props}
           className="w-full text-center text-white text-[20px] bg-inherit outline-none"
+          {...props}
         />
       </div>
       {subTitle && (
