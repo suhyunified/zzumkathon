@@ -3,7 +3,7 @@ import NavBar from "../../components/NavBar";
 import Title from "../../components/Title";
 import Footer from "../../components/Footer";
 import Button from "../../components/Button";
-import { useNavigate } from "react-router";
+
 import Tree from "../../components/Tree";
 import { UserContext } from "../../context/user";
 import { api } from "../../api/axios";
@@ -12,7 +12,6 @@ import MessageList from "../../components/MessageList";
 import Text from "../../components/Text";
 
 const DonationCompletePage = () => {
-  const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const [messages, setMessages] = useState<Message[]>([]);
 
