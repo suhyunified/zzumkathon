@@ -10,8 +10,10 @@ import { api } from "../../api/axios";
 import { Message } from "../../type";
 import MessageList from "../../components/MessageList";
 import Text from "../../components/Text";
+import { useNavigate } from "react-router";
 
 const DonationCompletePage = () => {
+  const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const [messages, setMessages] = useState<Message[]>([]);
 
@@ -56,13 +58,20 @@ const DonationCompletePage = () => {
       <MessageList messages={messages} />
 
       <Footer>
-        <Button
-          onClick={() => {
-            // Kakao.Share.sendDefault();
+        <Button style={{ marginBottom: "16px" }}>친구에게 공유하기</Button>
+        <button
+          onClick={() => navigate("/")}
+          style={{
+            width: "100%",
+            cursor: "pointer",
+            borderRadius: "8px",
+            color: "#B9C0C6",
+            fontSize: "16px",
+            fontWeight: 600,
           }}
         >
-          친구에게 공유하기
-        </Button>
+          처음으로 돌아가기
+        </button>
       </Footer>
     </React.Fragment>
   );

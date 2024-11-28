@@ -11,7 +11,7 @@ import DonationOnboardPage from "./pages/donation/DonationOnboardPage";
 
 function App() {
   return (
-    <div className="overflow-hidden flex justify-center min-w-[300px] w-full min-h-[100vh] ">
+    <div className="overflow-hidden flex justify-center min-w-[300px] w-full">
       <div className="w-full max-w-[620px]">
         <UserContextProvider>
           <Routes>
