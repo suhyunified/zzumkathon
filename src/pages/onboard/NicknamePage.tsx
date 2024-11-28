@@ -10,7 +10,7 @@ import Body from "../../components/Body";
 const NicknamePage = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
-  console.log(name);
+
   return (
     <>
       <NavBar />
