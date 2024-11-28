@@ -5,6 +5,7 @@ import OnboardSelectItemPage from "./pages/onboard/SelectItemPage";
 import OnboardNicknamePage from "./pages/onboard/NicknamePage";
 import OnboardCommentPage from "./pages/onboard/CommentPage";
 import OnboardCompletePage from "./pages/onboard/CompletePage";
+import LoginPage from "./pages/onboard/LoginPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <div className="w-full max-w-[620px]">
         <Routes>
           <Route index element={<HomePage />} />
+          <Route path="login" element={<LoginPage />} />
           <Route path="onboard">
             <Route path="item" element={<OnboardSelectItemPage />} />
             <Route path="contents" element={<OnboardSelectItemPage />} />
