@@ -57,7 +57,11 @@ const DonationCompletePage = () => {
       <MessageList messages={messages} />
 
       <Footer>
-        <Button onClick={() => navigate("/onboard/complete")}>
+        <Button
+          onClick={() => {
+            Kakao.Share.sendDefault();
+          }}
+        >
           친구에게 공유하기
         </Button>
       </Footer>
