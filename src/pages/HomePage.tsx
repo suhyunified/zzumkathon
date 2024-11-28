@@ -31,6 +31,8 @@ const HomePage = () => {
     getMessages(user.id);
   }, [messages.length, user?.id]);
 
+  if (messages.length === 0) return <div />;
+
   return (
     <React.Fragment>
       <NavBar />

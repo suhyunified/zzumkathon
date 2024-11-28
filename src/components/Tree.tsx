@@ -1,6 +1,7 @@
 import { ImgStar, ImgStarGray } from "../assets";
 import ImgTree from "../assets/img_tree.svg?react";
 import { ITEMS } from "../constants";
+
 import { Message } from "../pages/CompletePage";
 
 const POSITION = [
@@ -23,14 +24,14 @@ const Tree = ({ step, messages }: TreeProps) => {
     <div style={{ position: "relative" }}>
       <style>
         {`
-            @keyframes glow {
-              0% {
-                  filter: drop-shadow(0 0 5px rgba(255, 255, 0, 0.5)) drop-shadow(0 0 10px rgba(255, 255, 0, 0.7));
-              }
-              100% {
-                  filter: drop-shadow(0 0 20px rgba(255, 255, 0, 0.9)) drop-shadow(0 0 30px rgba(255, 255, 0, 1));
-              }
+          @keyframes glow {
+            0% {
+                filter: drop-shadow(0 0 5px rgba(255, 255, 0, 0.5)) drop-shadow(0 0 10px rgba(255, 255, 0, 0.7));
             }
+            100% {
+                filter: drop-shadow(0 0 20px rgba(255, 255, 0, 0.9)) drop-shadow(0 0 30px rgba(255, 255, 0, 1));
+            }
+          }
         `}
       </style>
       <div style={{ position: "absolute", left: "125px" }}>
@@ -68,7 +69,7 @@ const Tree = ({ step, messages }: TreeProps) => {
                 fontSize: "10px",
                 backgroundColor: "rgba(0, 0, 0, 0.5)",
                 padding: "4px 8px",
-                borderRadius: "16px",
+                borderRadius: "8px",
               }}
             >
               {messages[index]?.nickname}

@@ -24,7 +24,7 @@ export const ITEMS = [
     icon: <ImgDecoBallYellow width="100%" height="100%" />,
     jsx: ImgDecoBallYellow,
   },
-  { id: 3, icon: <ImgDecoBell width="100%" height="100%" />, jsx: ImgDecoBell },
+  { id: 3, icon: <ImgDecoBell width="100%" height="100%" /> },
   {
     id: 4,
     icon: <ImgDecoSocksGreen width="100%" height="100%" />,

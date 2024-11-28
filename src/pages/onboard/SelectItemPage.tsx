@@ -30,7 +30,30 @@ const SelectItemPage = () => {
         }
       />
       <div className="relative">
-        <div className=" w-full">
+        <style>
+          {`
+            /* 흔들리는 애니메이션 */
+            @keyframes shake1 {
+              0% {
+                transform:  rotate(0deg);
+              }
+              25% {
+                transform:  rotate(10deg);
+              }
+              50% {
+                transform:  rotate(-5deg);
+
+              }
+              75% {
+                transform:  rotate(3deg);
+              }
+              100% {
+                transform:  rotate(0deg);
+              }
+            }
+          `}
+        </style>
+        <div className="w-full">
           <Swiper
             spaceBetween={16}
             slidesPerView={1}
@@ -51,6 +74,8 @@ const SelectItemPage = () => {
               >
                 <div
                   style={{
+                    animation:
+                      index === form.itemType ? "shake1 1s forwards" : "",
                     width: "204px",
                   }}
                 >
