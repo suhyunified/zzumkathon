@@ -3,7 +3,7 @@ import IconLeftArrow from "../assets/icon_left_arrow.svg?react";
 
 const NavBar = ({ title }: { title?: string }) => {
   return (
-    <div className="fixed top-0 left-0 h-[56px] w-full flex items-center px-[12px] py-[4px] bg-[#2b2f34] z-10">
+    <div className="fixed top-0 left-0 h-[56px] w-full flex items-center justify-center px-[12px] py-[4px] bg-[#2b2f34] z-10">
       <div className="flex w-full max-w-[620px]">
         <div className="flex-1">
           <BackButton />

@@ -2,7 +2,7 @@ export interface User {
   id: number;
   username: string;
   email: string;
-  mobileNo: string;
+  mobilNo: string;
   freeTier: boolean;
   nickname: string;
 }

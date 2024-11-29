@@ -54,7 +54,7 @@ const DonationHistory = () => {
             휴대폰 번호
           </Text>
           <Text px={16} weight={500} color="white">
-            {formatPhoneNumber(user?.mobileNo || "")}
+            {formatPhoneNumber(user?.mobilNo || "")}
           </Text>
         </div>
         <div
