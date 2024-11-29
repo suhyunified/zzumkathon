@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 700;
+  src: url("../public/PretendardVariable.woff2") format("woff2");
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
 v2.0 | 20110126
 License: none (public domain)
@@ -94,7 +100,9 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  font-family: "Pretendard Variable", Pretendard;
 }
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,

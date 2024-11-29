@@ -13,14 +13,14 @@ const LoginPage = () => {
 
   const loginWithKakao = () => {
     window.Kakao.Auth.authorize({
-      redirectUri: "http://localhost:3000/login",
+      redirectUri: import.meta.env.VITE_REDIRECT_URI,
     });
   };
 
   const login = useCallback(
     async (authorizeCode: string) => {
       try {
-        const response = await api.post("/user/kakao/login", {
+        const response = await api.post(import.meta.env.VITE_LOGIN_API, {
           authorizeCode,
         });
 

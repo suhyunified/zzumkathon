@@ -28,10 +28,13 @@ const HomePage = () => {
 
   useEffect(() => {
     if (messages.length !== 0) return;
+    if (!user?.id) {
+      navigate("/login");
+      return;
+    }
 
-    if (!user?.id) return navigate("/login");
     getMessages(user.id);
-  }, [messages.length, navigate, user.id]);
+  }, [messages.length, navigate, user?.id]);
 
   if (messages.length === 0) return <div />;
 
