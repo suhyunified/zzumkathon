@@ -11,7 +11,7 @@ import ImgDecoBallYellowSmall from "./img_deco_ball_yellow_small.png";
 import ImgDecoBellSmall from "./img_deco_bell_small.png";
 import ImgDecoSocksGreenSmall from "./img_deco_socks_green_small.png";
 import ImgDecoSocksRedSmall from "./img_deco_socks_red_small.png";
-export { default as ImgDecoStickSmall } from "./img_deco_stick.svg?react";
+import ImgDecoStickSmall from "./img_deco_stick_small.png";
 export { default as IconChevronLeft } from "./icon_chevron_left.svg?react";
 export { default as IconChevronRight } from "./icon_chevron_right.svg?react";
 export { default as IconItem1 } from "./icon_item1.svg?react";
@@ -29,4 +29,5 @@ export {
   ImgDecoBellSmall,
   ImgDecoSocksGreenSmall,
   ImgDecoSocksRedSmall,
+  ImgDecoStickSmall,
 };
