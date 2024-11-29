@@ -65,6 +65,7 @@ const Tree = ({ step, messages }: TreeProps) => {
       </div>
       <AnimatePresence>
         {POSITION?.map((pos, index) => {
+          if (!messages[index]) return <div></div>;
           return (
             <motion.div
               key={`${index}-${messages[index]?.content}`}
