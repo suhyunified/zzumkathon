@@ -10,6 +10,7 @@ import { UserContext } from "../context/user";
 import Body from "../components/Body";
 import TreeWithMessageList from "../components/TreeWithMessageList";
 import { Message } from "../type";
+import { AnimatePresence, motion } from "motion/react";
 
 const CompletePage = () => {
   const navigate = useNavigate();
@@ -66,19 +67,28 @@ const CompletePage = () => {
       <Body>
         <Title
           title={
-            step === 2 ? (
-              <>
-                별이 빛날 수 있도록
-                <br />
-                도와주세요!
-              </>
-            ) : (
-              <>
-                짠! {user?.nickname}님 덕분에
-                <br />
-                트리가 더 풍성해졌어요
-              </>
-            )
+            <AnimatePresence>
+              {step === 2 ? (
+                <motion.div
+                  initial={{ opacity: 0, translateY: "60%" }}
+                  animate={{
+                    opacity: 1,
+                    translateY: "0%",
+                    transition: { duration: 1 },
+                  }}
+                >
+                  별이 빛날 수 있도록
+                  <br />
+                  도와주세요!
+                </motion.div>
+              ) : (
+                <>
+                  짠! {user?.nickname}님 덕분에
+                  <br />
+                  트리가 더 풍성해졌어요
+                </>
+              )}
+            </AnimatePresence>
           }
         />
         <TreeWithMessageList step={step === 0 ? "onboard" : "before"} />
