@@ -18,7 +18,7 @@ function App() {
       <Adogen />
       <div className="overflow-hidden flex justify-center min-w-[300px] w-full">
         <div className="w-full max-w-[620px]">
-          <audio id="jingle-bell" src="/jingle-bells.mp3" loop autoPlay></audio>
+          <audio id="jingle-bell" src="/jingle-bells.mp3" loop></audio>
           <UserContextProvider>
             <Routes>
               <Route path="login" element={<LoginPage />} />
