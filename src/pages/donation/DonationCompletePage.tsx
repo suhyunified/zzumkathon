@@ -20,7 +20,7 @@ const DonationCompletePage = () => {
         <Title
           title={
             <>
-              {user?.username}님 덕분에
+              {user?.nickname}님 덕분에
               <br />
               별이 더욱 빛나게 되었어요!
             </>

@@ -4,6 +4,7 @@ export interface User {
   email: string;
   mobileNo: string;
   freeTier: boolean;
+  nickname: string;
 }
 
 export type Message = {

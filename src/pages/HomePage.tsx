@@ -48,7 +48,7 @@ const HomePage = () => {
           </Text>
           {user?.freeTier ? (
             <Text px={16} weight={500} align="center" color="#B9C0C6">
-              {user.username}님의 기부 덕분에 세상이 밝아졌어요!
+              {user.nickname}님의 기부 덕분에 세상이 밝아졌어요!
               <br />
             </Text>
           ) : (

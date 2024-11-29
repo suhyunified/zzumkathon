@@ -74,7 +74,7 @@ const CompletePage = () => {
               </>
             ) : (
               <>
-                짠! {user?.username}님 덕분에
+                짠! {user?.nickname}님 덕분에
                 <br />
                 트리가 더 풍성해졌어요
               </>
