@@ -81,7 +81,7 @@ const Tree = ({ step, messages }: TreeProps) => {
                 left: pos.x + "px",
               }}
             >
-              {ITEMS?.[messages[index]?.itemType]?.icon}
+              {ITEMS?.[messages[index]?.itemType]?.small}
               <p
                 key={index}
                 style={{
