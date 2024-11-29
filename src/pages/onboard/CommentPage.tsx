@@ -12,7 +12,7 @@ import { UserContext } from "../../context/user";
 
 const CommentPage = () => {
   const { form, setForm } = useContext(OnboardContext);
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   console.log(user);
   const navigate = useNavigate();
 
@@ -24,6 +24,7 @@ const CommentPage = () => {
       itemType: form.itemType,
       treeId: 2,
     });
+    setUser?.((prev) => ({ ...prev, nickname: form.name }));
   };
 
   const handleSubmit = async () => {

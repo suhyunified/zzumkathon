@@ -1,14 +1,14 @@
 import CanGif from "../assets/Can.gif"; // Import GIF
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 const sequenceToMatch = ["ArrowDown", "ArrowRight", "ArrowDown", "ArrowRight"];
 
 const Adogen = () => {
   const [gifVisible, setGifVisible] = useState(false);
   const [, setKeySequence] = useState<string[]>([]);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const sequenceTimeout = 1000; // Max time interval between key presses (1 second)
-
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout>;
 
@@ -22,6 +22,7 @@ const Adogen = () => {
           updatedSequence.join(",") === sequenceToMatch.join(",")
         ) {
           setGifVisible(true); // Show GIF
+          audioRef.current?.play();
           setTimeout(() => setGifVisible(false), 3000); // Hide GIF after 3 seconds
           return [];
         }
@@ -43,6 +44,7 @@ const Adogen = () => {
 
   return (
     <>
+      <audio ref={audioRef} src="/워류겐.mp3" />
       {gifVisible && (
         <div
           style={{
