@@ -62,13 +62,13 @@ const TreeWithMessageList = ({ step }: TreeWithMessageListProps) => {
           flexDirection: "column",
         }}
       >
-        <div className="w-full">
+        <div className="w-full h-full">
           <Swiper
             slidesPerView={1}
             onSlideChange={({ activeIndex }) => setPage(activeIndex)}
           >
             {pageItems.map((pageItem) => (
-              <SwiperSlide>
+              <SwiperSlide style={{ minHeight: "250px" }}>
                 <MessageList messages={pageItem} />
               </SwiperSlide>
             ))}
