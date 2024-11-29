@@ -5,7 +5,7 @@ import { Message } from "../type";
 import { UserContext } from "../context/user";
 import { api } from "../api/axios";
 import Text from "./Text";
-import { IconChevronLeft, IconChevronRight } from "../assets";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 interface TreeWithMessageListProps {
   step: "onboard" | "before" | "after";
@@ -15,6 +15,7 @@ const TreeWithMessageList = ({ step }: TreeWithMessageListProps) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const { user } = useContext(UserContext);
   const [page, setPage] = useState(0);
+
   const getMessages = async (userId: number) => {
     const response = await api.post("/message/trees", {
       userId: userId,
@@ -24,10 +25,15 @@ const TreeWithMessageList = ({ step }: TreeWithMessageListProps) => {
     setMessages(response.data.data);
   };
 
-  const pageItems = messages.slice(
-    page * PAGE_SIZE,
-    page * PAGE_SIZE + PAGE_SIZE
-  );
+  function chunkArray<T>(array: T[]): T[][] {
+    const result: T[][] = [];
+    for (let i = 0; i < array.length; i += PAGE_SIZE) {
+      result.push(array.slice(i, i + PAGE_SIZE));
+    }
+    return result;
+  }
+
+  const pageItems = chunkArray(messages);
 
   useEffect(() => {
     if (messages.length !== 0 || !user?.id) return;
@@ -38,7 +44,7 @@ const TreeWithMessageList = ({ step }: TreeWithMessageListProps) => {
   return (
     <>
       <div className="flex justify-center">
-        <Tree step={step} messages={pageItems} />
+        <Tree step={step} messages={pageItems[page]} />
       </div>
       <div className="my-[20px] mb-[16px]">
         <Text px={14} weight={600} align="center">
@@ -47,33 +53,58 @@ const TreeWithMessageList = ({ step }: TreeWithMessageListProps) => {
       </div>
       <div
         style={{
+          padding: "20px",
+          backgroundColor: "#3A4047",
+          borderRadius: "16px",
           display: "flex",
-          justifyContent: "space-between",
-          margin: "20px 0",
+          gap: "8px",
+          zIndex: 0,
+          flexDirection: "column",
         }}
       >
-        <div>
-          {page !== 0 && (
-            <IconChevronLeft
-              style={{ width: "30px", height: "30px" }}
-              onClick={() => {
-                setPage((prev) => prev - 1);
-              }}
-            />
-          )}
-        </div>
-        <div>
-          {page * PAGE_SIZE + PAGE_SIZE < messages.length && (
-            <IconChevronRight
-              style={{ width: "30px", height: "30px" }}
-              onClick={() => {
-                setPage((prev) => prev + 1);
-              }}
-            />
-          )}
+        <div className="w-full">
+          <Swiper
+            slidesPerView={1}
+            onSlideChange={({ activeIndex }) => setPage(activeIndex)}
+          >
+            {pageItems.map((pageItem) => (
+              <SwiperSlide>
+                <MessageList messages={pageItem} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
-      <MessageList messages={pageItems} />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "20px",
+          marginBottom: "100px",
+        }}
+      >
+        <div
+          style={{
+            backgroundColor: "#141618",
+            borderRadius: "16px",
+            padding: "3px 6px",
+            color: "#788391",
+            fontSize: "12px",
+          }}
+        >
+          <span
+            style={{
+              color: "white",
+            }}
+          >
+            {page + 1}
+          </span>{" "}
+          /{" "}
+          {messages.length % PAGE_SIZE === 0
+            ? messages.length / PAGE_SIZE
+            : Math.floor(messages.length / PAGE_SIZE) + 1}
+        </div>
+      </div>
     </>
   );
 };

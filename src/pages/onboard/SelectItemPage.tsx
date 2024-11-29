@@ -1,5 +1,3 @@
-// Import Swiper styles
-
 import { useNavigate } from "react-router";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
@@ -104,7 +102,7 @@ const SelectItemPage = () => {
       </div>
 
       <Footer>
-        <Button onClick={() => navigate("/onboard/nickname")}>골랐어요</Button>
+        <Button onClick={() => navigate("/onboard/nickname")}>선택</Button>
       </Footer>
     </React.Fragment>
   );

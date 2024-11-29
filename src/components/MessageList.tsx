@@ -10,19 +10,9 @@ interface MessageListProps {
 const MessageList = ({ messages }: MessageListProps) => {
   const { user } = useContext(UserContext);
   return (
-    <div
-      style={{
-        padding: "20px",
-        backgroundColor: "#3A4047",
-        borderRadius: "16px",
-        display: "flex",
-        gap: "8px",
-        flexDirection: "column",
-        marginBottom: "120px",
-      }}
-    >
+    <>
       {messages.map((message) => (
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", marginBottom: "6px" }}>
           <div
             style={{
               marginRight: "16px",
@@ -46,7 +36,7 @@ const MessageList = ({ messages }: MessageListProps) => {
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

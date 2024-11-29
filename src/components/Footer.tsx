@@ -4,7 +4,7 @@ const Footer = (props: HTMLAttributes<HTMLDivElement>) => {
   return (
     <div
       {...props}
-      className="overflow-hidden fixed flex justify-center  left-0 bottom-0 w-full"
+      className="overflow-hidden fixed flex justify-center  left-0 bottom-0 w-full z-10"
     >
       <div
         className="w-full max-w-[620px] py-[16px] px-[24px]"
